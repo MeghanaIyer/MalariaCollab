@@ -40,7 +40,6 @@ blast_file = sys.argv[2]
 result_file = sys.argv[3]
 
 blast_dict = {}
-null_sign = False
 
 with open(organism_file, 'r') as organism, open (blast_file,
 'r') as blast, open (result_file, 'w') as result:
@@ -61,9 +60,7 @@ with open(organism_file, 'r') as organism, open (blast_file,
                                  blast_dict[code_num]) + '\n')
 
                 else:    # value == null
-                    null_sign = True
+                    next(organism)  # read sequence line too.
         else:   # sequence line
-            if null_sign == False:
-                result.write(line)
-            else:   # null_sign == True
-                null_sign = False
+            result.write(line)
+            
